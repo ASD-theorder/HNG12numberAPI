@@ -34,7 +34,10 @@ def is_armstrong(n: int) -> bool:
 async def classify_number(number: str = Query(..., description="Number to classify")):
     """API endpoint to classify a number."""
 
-    if not number.lstrip("-").isdigit(): return {"number": number, "error": True, "message": "Input should be a valid integer"}
+    if number.startswith("-"):num_part = number[1:] 
+    else:num_part = number
+
+    if not num_part.isdigit(): return {"number": number, "error": True, "message": "Input should be a valid integer"}
 
     number = int(number)  # Convert after validation
     

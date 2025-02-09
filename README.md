@@ -1,7 +1,7 @@
 # HNG12numberAPI
 ## Number Classification API
 
-It's me again, back with another API. This API classifies numbers based on mathematical properties, it returns fun facts about a number whether it is even, odd, armstrong, prime, perfect and so on. Way to deal with numbers right
+It's me again, back with another API. This API classifies numbers based on mathematical properties, it returns fun facts about a number whether it is even, odd, armstrong, prime, perfect and so on. Way to deal with numbers right.
 
 ## Features
 - Checks if a number is prime or perfect.
@@ -15,7 +15,7 @@ It's me again, back with another API. This API classifies numbers based on mathe
 ## Example Usage
 - Using a web browser
 Open your web browser, in the address bar, enter the following URL
-[http://127.0.0.1:8000/api/classify-number?number=7], you can replace 7 with any integer.
+[hng12numberapi.onrender.com/api/classify-number?number=7], you can replace 7 with any integer.
 
 The browser will display the JSON response, which would look something like this 
 
@@ -34,7 +34,7 @@ The browser will display the JSON response, which would look something like this
 ```
 
 If you enter a non-numeric value, such as
-[http://127.0.0.1:8000/api/classify-number?number=hi] 
+[hng12numberapi.onrender.com/api/classify-number?number=hi] 
 
 The response should be:
 

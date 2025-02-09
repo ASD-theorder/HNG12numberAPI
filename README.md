@@ -31,9 +31,10 @@ The browser will display the JSON response, which would look something like this
   "digit_sum": 7,
   "fun_fact": "7 is the lowest number that cannot be represented as the sum of the squares of three integers."
 }
+```
 
-If you enter a non-numeric value, such as 
-127.0.0.1:8000/api/classify-number?number=hi
+If you enter a non-numeric value, such as
+[http://127.0.0.1:8000/api/classify-number?number=hi] 
 
 The response should be:
 

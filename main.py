@@ -27,16 +27,21 @@ def is_perfect(n: int) -> bool:
 
 def is_armstrong(n: int) -> bool:
     """Check if a number is an Armstrong number."""
+    n_str = str(n)
+
+    if n_str[0] == '-':
+        n_str = n_str[1:]
     digits = [int(d) for d in str(n)]
-    return sum(d ** len(digits) for d in digits) == n
+    return sum(d ** len(digits) for d in digits) == abs(n)
 
 @app.get("/api/classify-number")
 async def classify_number(number: str = Query(..., description="Number to classify")):
     """API endpoint to classify a number."""
 
-    if not number or not number.lstrip("-").isdigit(): return {"number": number, "error": True, "message": "Input should be a valid integer"}
+    if not number.isdigit() and not (number.startswith('-') and number[1:].isdigit()):
+     return {"number": number, "error": True, "message": "Input should be a valid integer"}
 
-    number = int(number)  # Convert after validation
+    number = int(number)  
     
     
     properties = ["odd" if number % 2 else "even"]
@@ -55,6 +60,6 @@ async def classify_number(number: str = Query(..., description="Number to classi
         "is_prime": is_prime(number),
         "is_perfect": is_perfect(number),
         "properties": properties,
-        "digit_sum": sum(int(d) for d in str(number)),
+        "digit_sum": sum(int(d) for d in str(abs(number))),
         "fun_fact": fun_fact
 } 

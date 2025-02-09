@@ -23,7 +23,8 @@ def is_prime(n: int) -> bool:
 
 def is_perfect(n: int) -> bool:
     """Check if a number is perfect (sum of divisors equals number)."""
-    return n > 1 and sum(i for i in range(1, n) if n % i == 0) == n
+    if n < 1: return False
+    return sum(i for i in range(1, n) if n % i == 0) == n
 
 def is_armstrong(n: int) -> bool:
     """Check if a number is an Armstrong number."""
@@ -31,14 +32,14 @@ def is_armstrong(n: int) -> bool:
 
     if n_str[0] == '-':
         n_str = n_str[1:]
-    digits = [int(d) for d in str(n)]
+    digits = [int(d) for d in str(abs(n))]
     return sum(d ** len(digits) for d in digits) == abs(n)
 
 @app.get("/api/classify-number")
 async def classify_number(number: str = Query(..., description="Number to classify")):
     """API endpoint to classify a number."""
 
-    if not number.isdigit() and not (number.startswith('-') and number[1:].isdigit()):
+    if not number.lstrip('-').isdigit():
      return {"number": number, "error": True, "message": "Input should be a valid integer"}
 
     number = int(number)  
@@ -50,7 +51,7 @@ async def classify_number(number: str = Query(..., description="Number to classi
     
     
     try:
-        response = requests.get(f"http://numbersapi.com/{number}/math?json")
+        response = requests.get(f"http://numbersapi.com/{abs(number)}/math?json")
         fun_fact = response.json().get("text", "No fun fact available.")
     except:
         fun_fact = "Fun fact not available."

@@ -31,8 +31,12 @@ def is_armstrong(n: int) -> bool:
     return sum(d ** len(digits) for d in digits) == n
 
 @app.get("/api/classify-number")
-async def classify_number(number: int = Query(..., description="Number to classify")):
+async def classify_number(number: str = Query(..., description="Number to classify")):
     """API endpoint to classify a number."""
+
+    if not number.lstrip("-").isdigit(): return {"number": number, "error": True, "message": "Input should be a valid integer"}
+
+    number = int(number)  # Convert after validation
     
     
     properties = ["odd" if number % 2 else "even"]

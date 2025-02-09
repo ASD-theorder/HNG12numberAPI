@@ -41,6 +41,7 @@ The response should be:
 ```json
 {
     "number": "hi",
-    "error": true
+    "error": true,
+    "message": "Input should be a valid integer"
 }
 ```
